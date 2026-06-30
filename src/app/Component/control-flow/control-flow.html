@@ -1,0 +1,87 @@
+<div class="row">
+    <h4>Select Subject</h4>
+    <div class="col-6">
+
+        <select [(ngModel)]="selectedcast" class="form-select">
+
+            <option value="Marathi">Marathi</option>
+            <option value="English">English</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Other">Other</option>
+
+        </select>
+    </div>
+
+    <div class="col-6">
+        @if (selectedcast == 'Other'){
+        <input type="text" class="form-control" placeholder="Enter Subject">
+
+        }
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-lg-6">
+        @if(isactive() == true){
+        <span class="text-success">Student is accctive</span>
+        }@else{
+        <span class="text-danger">Student is Inactive</span>
+        }
+        <br>
+
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-outline-primary" (click)="onchange(true)">Make Student Active</button>
+        <button class="btn btn-outline-danger" (click)="onchange(false)">make Student Deactive</button>
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <ul>
+            @for(item of Cityarr; track $index){
+            <li>{{item}}</li>
+            }
+
+        </ul>
+    </div>
+
+    <div class="col-4">
+        @for(item of Cityarr;track $index){
+        <textarea [value]="Cityarr"></textarea>
+        }
+    </div>
+
+</div>
+
+
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Rol Number</th>
+                    <th>Full name</th>
+                    <th>Last name</th>
+                    <th>City</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @for(item of Studentlist;track $index){
+                <tr>
+
+                    <td>{{$index+1}}</td>
+                    <td>{{item.fname}}</td>
+                    <td>{{item.lname}}</td>
+                    <td>{{item.City}}</td>
+
+                </tr>
+                }
+
+
+            </tbody>
+
+        </table>
+    </div>
+</div>

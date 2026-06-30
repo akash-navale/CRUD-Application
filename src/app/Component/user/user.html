@@ -1,0 +1,112 @@
+<div class="container mt-4">
+    <div class="row g-4">
+
+        <div class="col-lg-8">
+            <div class="card shadow-lg main-card">
+                <div class="card-header bg-warning fw-bold fs-5">
+                    <i class="bi bi-people-fill"></i> User Details
+                </div>
+
+                <div class="card-body">
+                    <div class="row g-4">
+                        @for(item of getalldata; track item.roll){
+                        <div class="col-md-6">
+                            <div class="card user-card shadow">
+                                <div class="card-body text-center">
+                                    <div class="user-icon mb-3">
+                                        <i class="bi bi-person-fill"></i>
+                                    </div>
+                                    <p><b>Roll No:</b> {{item.roll}}</p>
+                                    <p><b>Name:</b> {{item.name}}</p>
+                                    <p><b>Gender:</b> {{item.gender}}</p>
+                                    <p><b>DOB:</b> {{item.dob}}</p>
+
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <button class="btn btn-warning btn-sm" (click)="onEdit(item)">
+                                            Edit <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <button class="btn btn-danger btn-sm" (click)="onDelete(item.roll)">
+                                            Delete <i class="bi bi-trash-fill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+ <!-- Form -->
+
+        <div class="col-lg-4">
+            <div class="card shadow-lg main-card">
+                <div class="card-header bg-warning fw-bold fs-5">
+                    <i class="bi bi-person-plus-fill"></i> User Form
+                </div>
+
+                <div class="card-body">
+                    <!-- Used formgroup to bind a data to component  -->
+                    <form [formGroup]="userForm">
+                        <div class="mb-3">
+                            <label>Roll Number</label>
+                            <input type="number" formControlName="roll" class="form-control" [readonly]="isEditmode">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Full Name</label>
+                            <input type="text" formControlName="name" class="form-control">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="d-block mb-2">Gender</label>
+
+                            <div class="d-flex gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="genderMale" value="Male"
+                                        formControlName="gender">
+                                    <label class="form-check-label" for="genderMale">Male</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="genderFemale" value="Female"
+                                        formControlName="gender">
+                                    <label class="form-check-label" for="genderFemale">Female</label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" id="genderOther" value="Other"
+                                        formControlName="gender">
+                                    <label class="form-check-label" for="genderOther">Other</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Date Of Birth</label>
+                            <input type="date" formControlName="dob" class="form-control">
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            @if(!isEditmode){
+                            <button type="button" class="btn btn-success" (click)="OnsaveUser()">
+                                <i class="bi bi-save"></i> Save
+                            </button>
+                            } @else {
+                            <button type="button" class="btn btn-primary" (click)="onUpdate()">
+                                <i class="bi bi-pencil-square"></i> Update
+                            </button>
+                            }
+
+                            <button type="button" class="btn btn-secondary" (click)="Reset()">
+                                <i class="bi bi-arrow-clockwise"></i> Reset
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

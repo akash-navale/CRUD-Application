@@ -1,0 +1,12 @@
+<p>data-binding works!</p>
+
+
+<h1>my name is {{username}}</h1>  // interpolation using double-curly breces
+
+<input type="text" [(ngModel)]="username">   //two way data binding through ngmodel
+
+{{number}}
+
+<input type="button" [value]="number">  // property binding
+
+<button class="btn btn-primary" (click)="Showalert()">Click me </button>   // Event binding
